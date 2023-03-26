@@ -2,19 +2,14 @@ package com.cpc.backend.models;
 
 
 import jakarta.persistence.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "dbs")
+@Document(collection = "dbs")
 public class Database {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false)
     private Long id;
-    @Column
     private String url;
-    @Column
     private String username;
-    @Column
     private String password;
 
     public Database() {
