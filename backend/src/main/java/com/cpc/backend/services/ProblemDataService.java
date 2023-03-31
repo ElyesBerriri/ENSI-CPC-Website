@@ -3,6 +3,7 @@ package com.cpc.backend.services;
 
 import com.cpc.backend.exceptions.ProblemDataNotFoundException;
 import com.cpc.backend.models.Input;
+import com.cpc.backend.models.InputOutput;
 import com.cpc.backend.models.Output;
 import com.cpc.backend.models.ProblemData;
 import com.cpc.backend.repositories.ProblemDataRepository;
@@ -10,6 +11,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,11 +44,11 @@ public class ProblemDataService {
     }
 
 
-    public Output Submit(Input in) {
+    public Output Submit(Input in,String stdin) {
         JdoodleAPI request=new JdoodleAPI();
         Output output;
         String out;
-        out=request.ExecuteCode(in);
+        out=request.ExecuteCodeWithStdIn(in,stdin);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             output = objectMapper.readValue(out, Output.class);
@@ -54,20 +57,51 @@ public class ProblemDataService {
             throw new RuntimeException(e);
         }
     }
-    public String findProblemOutputById(Long id){
-        ProblemData pb;
-        pb=problemRepository.findProblemDataById(id).orElseThrow(()-> new ProblemDataNotFoundException("User by id "+id+" was not found"));
-        return pb.getOutput();
+    public List<String> findProblemOutputById(Long id){
+        List<ProblemData> pb;
+        List<String> result = new ArrayList<String>();
+        //pb=problemRepository.findProblemDataById(id).orElseThrow(()-> new ProblemDataNotFoundException("User by id "+id+" was not found"));
+        //return pb.getOutput();
+        pb=problemRepository.findByIdProblem(id);
+        for(ProblemData element : pb) {
+            result.add(element.getOutput());
+        }
+        return result;
+    }
+
+    public List<InputOutput> findProblemInputOutputById(Long id){
+        List<ProblemData> pb;
+        List<InputOutput> result = new ArrayList<InputOutput>();
+        InputOutput inout=new InputOutput();
+        //pb=problemRepository.findProblemDataById(id).orElseThrow(()-> new ProblemDataNotFoundException("User by id "+id+" was not found"));
+        //return pb.getOutput();
+        pb=problemRepository.findByIdProblem(id);
+        for(ProblemData element : pb) {
+            inout.setInput(element.getInput());
+            inout.setOutput(element.getInput());
+            result.add(inout);
+        }
+        return result;
     }
     public boolean SubmitCode(Long id, Input in)
     {
-        String tableOutput=findProblemOutputById(id);
-        Output o=Submit(in);
-        String codeOutput=o.getOutput();
-        if(tableOutput==codeOutput)
-            return true;
-        else
-            return false;
+        boolean flag=true;
+        List<InputOutput> InOut=findProblemInputOutputById(id);
+        for(InputOutput element : InOut) {
+            Output o=Submit(in, element.getInput());
+            if(o.getOutput()!= element.getOutput())
+                return false;
+        }
+        return flag;
+    }
+
+    public List<ProblemData> ExtractProblem(Long id) {
+        try {
+            return problemRepository.findByIdProblem(id);
+        }catch (Exception e) {
+            // Handle the exception
+        }
+        return null;
 
     }
 }
