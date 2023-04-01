@@ -4,7 +4,10 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 src/main/resources/DevelopmentTools
+src/main/resources/devTools
 src/main/resources/application.properties
+src/main/resources/db.sql
+src/main/resources/requests.http
 
 ### STS ###
 .apt_generated
