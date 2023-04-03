@@ -14,7 +14,7 @@
     <name>backend</name>
     <description>backend</description>
     <properties>
-        <java.version>19</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -53,7 +53,7 @@
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>2.3.3</version>
+            <version>4.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
