@@ -1,9 +1,6 @@
 package com.cpc.backend.controllers;
 
-import com.cpc.backend.models.Input;
-import com.cpc.backend.models.Output;
-import com.cpc.backend.models.Problem;
-import com.cpc.backend.models.ProblemData;
+import com.cpc.backend.models.*;
 import com.cpc.backend.services.ProblemDataService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +30,9 @@ public class ProblemDataController {
 
     @GetMapping("/findOutput/{id}")
     public ResponseEntity<String> getProblemOutputById(@PathVariable("id") Long id){
-        String problemData = problemDataService.findProblemOutputById(id);
-        return new ResponseEntity<>(problemData, HttpStatus.OK);
+       // String problemData = problemDataService.findProblemOutputById(id);
+       // return new ResponseEntity<>(problemData, HttpStatus.OK);
+        return null;
     }
 
     @PostMapping("/add")
@@ -58,6 +56,12 @@ public class ProblemDataController {
     public boolean SubmitCode(@PathVariable("id") Long id,@RequestBody Input in){
         boolean flag = problemDataService.SubmitCode(id,in);
         return flag;
+    }
+
+    @GetMapping("/extractMyProblem/{id_problem}")
+    public ResponseEntity<List<InputOutput>> ExtractProblem(@PathVariable("id_problem") Long id){
+        List<InputOutput>  pb = problemDataService.findProblemInputOutputById(id);
+        return new ResponseEntity<>(pb, HttpStatus.OK);
     }
 
 }
