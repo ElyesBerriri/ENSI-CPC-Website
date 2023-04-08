@@ -4,6 +4,9 @@ import { BrowserModule } from '@angular/platform-browser'
 
 import { ComponentsModule } from './components/components.module'
 import { AppComponent } from './app.component'
+import { authInterceptorProviders } from './_helpers/auth.interceptor'
+import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms'
 
 const routes = [
   {
@@ -28,12 +31,19 @@ const routes = [
         (m) => m.ResourcesModule
       ),
   },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then(
+        (m) => m.LoginModule
+      ),
+  }
 ]
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, RouterModule.forRoot(routes), ComponentsModule],
-  providers: [],
+  imports: [BrowserModule, RouterModule.forRoot(routes), ComponentsModule, HttpClientModule, FormsModule],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
