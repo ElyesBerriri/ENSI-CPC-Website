@@ -53,9 +53,18 @@ public class ProblemDataController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @GetMapping("/execute/{id_problem}")
-    public boolean SubmitCode(@PathVariable("id") Long id,@RequestBody Input in){
+    public boolean SubmitCode(@PathVariable("id_problem") Long id,@RequestBody Input in){
+        //System.out.println(in);
         boolean flag = problemDataService.SubmitCode(id,in);
         return flag;
+    }
+
+    @GetMapping("/exe")
+    public Output Submit(@RequestBody Input in){
+        Output o=problemDataService.Submit(in,"5");
+        System.out.println(o);
+        return o;
+
     }
 
     @GetMapping("/extractMyProblem/{id_problem}")

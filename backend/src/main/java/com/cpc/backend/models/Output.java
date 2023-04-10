@@ -39,6 +39,17 @@ public class Output {
         this.cpuTime = cpuTime;
     }
 
+    @Override
+    public String toString() {
+        return "Output{" +
+                "output='" + output + '\'' +
+                ", statusCode=" + statusCode +
+                ", memory=" + memory +
+                ", cpuTime=" + cpuTime +
+                ", compilationStatus='" + compilationStatus + '\'' +
+                '}';
+    }
+
     public String getCompilationStatus() {
         return compilationStatus;
     }

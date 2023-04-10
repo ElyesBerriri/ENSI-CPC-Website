@@ -49,10 +49,10 @@ public class Problem {
     }
 
     public void setTitle(String title) {
-        title = title;
+        this.title = title;
     }
 
     public void setDescription(String description) {
-        description = description;
+        this.description = description;
     }
 }

@@ -9,6 +9,14 @@ public class Input {
         this.language = language;
     }
 
+    @Override
+    public String toString() {
+        return "Input{" +
+                "script='" + script + '\'' +
+                ", language='" + language + '\'' +
+                '}';
+    }
+
     public Input() {
     }
 

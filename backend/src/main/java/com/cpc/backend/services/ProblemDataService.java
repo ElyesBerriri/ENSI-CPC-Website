@@ -89,8 +89,13 @@ public class ProblemDataService {
         List<InputOutput> InOut=findProblemInputOutputById(id);
         for(InputOutput element : InOut) {
             Output o=Submit(in, element.getInput());
-            if(o.getOutput()!= element.getOutput())
+            System.out.println("test-before:"+o.getOutput()+element.getInput());
+            if(!(o.getOutput().equals(element.getOutput())))
+            {
+                System.out.println("test22:"+o.getOutput()+element.getInput());
                 return false;
+            }
+
         }
         return flag;
     }
