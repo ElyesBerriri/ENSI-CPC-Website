@@ -14,6 +14,7 @@ import com.cpc.backend.models.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,7 +32,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -48,21 +49,31 @@ public class AuthController {
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+		User user = userRepository.findByUsername(loginRequest.getUsername()).orElse(new User());
+
+		if (user.getId()==null) return ResponseEntity.badRequest().body(new MessageResponse("Username Not Found"));
+
+		Authentication authentication;
+		try {
+			authentication = authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+
+		} catch (BadCredentialsException e) {
+			return ResponseEntity.badRequest().body(new MessageResponse("Password Incorrect"));
+		}
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
 
-		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();		
+		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(GrantedAuthority::getAuthority)
 				.collect(Collectors.toList());
-		return ResponseEntity.ok(new JwtResponse(jwt, 
-												 userDetails.getId(),
-												 userDetails.getUsername(),
-												 userDetails.getEmail(), 
-												 roles));
+		return ResponseEntity.ok(new JwtResponse(jwt,
+				userDetails.getId(),
+				userDetails.getUsername(),
+				userDetails.getEmail(),
+				roles));
 	}
 
 	@PostMapping("/signup")
