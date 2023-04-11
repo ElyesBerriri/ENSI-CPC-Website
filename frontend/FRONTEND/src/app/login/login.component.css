@@ -2,6 +2,10 @@
     color: #BFB51F;
 }
 
+.section{
+    min-height: 100vh;
+    background-color: #27272D;
+}
 .link:hover {
     color: #ffeba7;
 }
@@ -93,7 +97,7 @@ h6 span {
 .card-back {
     width: 100%;
     height: 100%;
-    background-color: #262626;
+    background-color: #BFB51F;
     background-image: url('../../assets/pat.svg');
     background-position: bottom center;
     background-repeat: no-repeat;
