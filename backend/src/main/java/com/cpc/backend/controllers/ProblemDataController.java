@@ -52,7 +52,7 @@ public class ProblemDataController {
         problemDataService.deleteProblemData(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @GetMapping("/execute/{id_problem}")
+    @PostMapping("/execute/{id_problem}")
     public boolean SubmitCode(@PathVariable("id_problem") Long id,@RequestBody Input in){
         //System.out.println(in);
         boolean flag = problemDataService.SubmitCode(id,in);
