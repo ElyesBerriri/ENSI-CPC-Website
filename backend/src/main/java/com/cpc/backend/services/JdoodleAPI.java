@@ -16,10 +16,10 @@ import java.net.URL;
 public class JdoodleAPI {
     public static void main(String args[]) {
         String out;
-        String script2 = "for i in range(1,1000):\\n   print \\\"Sum of x+y /n\\\";";
-        String script = "#include <iostream>\\n\\nusing namespace std;\\n\\nint main() {\\n    int a;\\n    std::cin>>a;\\n    std::cout<<a;\\n}";
-        String language = "cpp";
-        Input in=new Input(script,language);
+        String script2 = "num = int(input(\\\"\\\"))\\nprint(num, end='')\\n";
+        String script = "#include <iostream>\\n#include <string>\\nint main() {\\n\\n    int num;\\n    char c='f';\\n    string ch=\\\"f\\\";\\n    std::cin >> num;\\n    std::cout << (int)(ch[0]-'a') ;\\n    return 0;\\n}\\n";
+        String language = "python3";
+        Input in=new Input(script2,language);
         out=ExecuteCodeWithStdIn(in,"5");
         System.out.println(out);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -73,6 +73,7 @@ public class JdoodleAPI {
             //System.out.println("Output from JDoodle .... \n");
             while ((output2 = bufferedReader.readLine()) != null) {
                 output+=output2;
+
                 //System.out.println(output2);
             }
             System.out.println(output);

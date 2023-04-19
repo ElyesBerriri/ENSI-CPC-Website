@@ -1,0 +1,10 @@
+<div class="p-4 rounded shadow-sm bg-light border" >
+    <a class="nav-link" routerLink="/problem/{{pb.id}}" routerLinkActive="active">#{{pb.id}}:{{pb.title}}</a>
+    <p ><span class="font-weight-bold mb-0">Description: </span><span class="font">{{pb.description}}</span></p> 
+    <p *ngIf="flag" style="color: green;">Successfully Submitted</p>
+
+</div>
+
+<div id="editor" #editor style="height: 500px;"></div>
+<button (click)="showValue()">Submit</button>
+

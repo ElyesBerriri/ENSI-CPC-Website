@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { ProblemsComponent } from './problems/problems.component';
+import { ProblemComponent } from './problem/problem.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     AdminComponent,
     UserComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    ProblemsComponent,
+    ProblemComponent
   ],
   imports: [
     BrowserModule,

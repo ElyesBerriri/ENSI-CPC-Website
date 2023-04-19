@@ -22,8 +22,8 @@ export class AuthService {
     }, httpOptions);
   }
 
-  pb(language: string,script: string): Observable<any> {
-    return this.http.post(environment.apiBaseUrl + '/problemDatas/execute/8', {
+  pb(language: string,script: string,id:number): Observable<any> {
+    return this.http.post(environment.apiBaseUrl + '/problemDatas/execute/'+id, {
       script,
       language
     }, httpOptions);
