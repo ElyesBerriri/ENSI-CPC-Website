@@ -18,6 +18,7 @@ import java.util.List;
 @Service
 public class ProblemDataService {
     private  final ProblemDataRepository problemRepository;
+
     @Autowired
     public ProblemDataService(ProblemDataRepository problemRepository) {
         this.problemRepository = problemRepository;
@@ -62,9 +63,11 @@ public class ProblemDataService {
         List<String> result = new ArrayList<String>();
         //pb=problemRepository.findProblemDataById(id).orElseThrow(()-> new ProblemDataNotFoundException("User by id "+id+" was not found"));
         //return pb.getOutput();
+
         pb=problemRepository.findByIdProblem(id);
         for(ProblemData element : pb) {
             result.add(element.getOutput());
+            System.out.println("elyes:"+element.getOutput()+element.getInput());
         }
         return result;
     }
@@ -72,13 +75,11 @@ public class ProblemDataService {
     public List<InputOutput> findProblemInputOutputById(Long id){
         List<ProblemData> pb;
         List<InputOutput> result = new ArrayList<InputOutput>();
-        InputOutput inout=new InputOutput();
         //pb=problemRepository.findProblemDataById(id).orElseThrow(()-> new ProblemDataNotFoundException("User by id "+id+" was not found"));
         //return pb.getOutput();
         pb=problemRepository.findByIdProblem(id);
         for(ProblemData element : pb) {
-            inout.setInput(element.getInput());
-            inout.setOutput(element.getInput());
+            InputOutput inout=new InputOutput(element.getInput(),element.getOutput());
             result.add(inout);
         }
         return result;
@@ -89,7 +90,8 @@ public class ProblemDataService {
         List<InputOutput> InOut=findProblemInputOutputById(id);
         for(InputOutput element : InOut) {
             Output o=Submit(in, element.getInput());
-            System.out.println("test-before:"+o.getOutput()+element.getInput());
+            System.out.println("test-before:"+element.getOutput()+"  "+element.getInput());
+            System.out.println("test-databaseValues:"+o);
             if(!(o.getOutput().equals(element.getOutput())))
             {
                 System.out.println("test22:"+o.getOutput()+element.getInput());

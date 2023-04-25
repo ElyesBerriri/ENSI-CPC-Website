@@ -46,11 +46,11 @@ export class ProblemComponent implements AfterViewInit {
     //const lines = editor.getValue().split("\n");
     //const textWithNewlines = lines.join("\n") + "\\n"; // join the lines with "\n" and add a trailing "\n"
     //console.log(textWithNewlines);
-    const lang="python3";
+    const lang="cpp";
     var code = editor.getValue();
     
     var formattedCode = JSON.stringify(code)
-    .replace(/\n/g, '\\\\n')
+    .replace(/\n/g, '\\n')
     .replace(/\r/g, '')
     .replace(/\\r/g, '');
     var cpte="num = int(input())\\nprint(num)\\n"

@@ -13,4 +13,6 @@ public interface ProblemRepository  extends JpaRepository<Problem, Long> {
     Optional<Problem> findProblemById(Long id);
     @Query(value = "SELECT p FROM Problem p WHERE p.title= :title")
     List<Problem> findByTitle2(@Param("title") String title);
+
+
 }

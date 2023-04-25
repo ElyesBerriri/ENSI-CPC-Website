@@ -17,10 +17,10 @@ public class JdoodleAPI {
     public static void main(String args[]) {
         String out;
         String script2 = "num = int(input(\\\"\\\"))\\nprint(num, end='')\\n";
-        String script = "#include <iostream>\\n#include <string>\\nint main() {\\n\\n    int num;\\n    char c='f';\\n    string ch=\\\"f\\\";\\n    std::cin >> num;\\n    std::cout << (int)(ch[0]-'a') ;\\n    return 0;\\n}\\n";
-        String language = "python3";
-        Input in=new Input(script2,language);
-        out=ExecuteCodeWithStdIn(in,"5");
+        String script = "#include <iostream>\\n\\nint main() {\\n    int num,num2;\\n    std::cin >> num >>num2;\\n    std::cout << num+num2;\\n    return 0;\\n}";
+        String language = "cpp";
+        Input in=new Input(script,language);
+        out=ExecuteCodeWithStdIn(in,"3 5");
         System.out.println(out);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
