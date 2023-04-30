@@ -688,3 +688,17 @@
         padding: 16px;
     }
 }
+
+.rattle-text {
+    color: green;
+    animation: rattle 1s infinite;
+}
+  
+@keyframes rattle {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(-10deg); }
+    40% { transform: rotate(8deg); }
+    60% { transform: rotate(-5deg); }
+    80% { transform: rotate(3deg); }
+    100% { transform: rotate(0deg); }
+}

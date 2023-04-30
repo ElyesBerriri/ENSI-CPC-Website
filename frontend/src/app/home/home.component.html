@@ -17,13 +17,25 @@
                 <a routerLink="/ressources" class="home-navlink2 button-clean button">
                     Resources
                 </a>
+                <a routerLink="/problems" class="home-navlink2 button-clean button rattle-text" *ngIf="isLoggedIn">
+                    Problems
+                </a>
+                <a routerLink="/admin" class="home-navlink2 button-clean button" *ngIf="isAdmin">
+                    Admin
+                </a>
             </nav>
         </div>
         <div data-thq="thq-navbar-btn-group" class="home-btn-group">
             <div class="home-socials"></div>
-            <button routerLink="/login" class="home-view button">
+            <button routerLink="/login" class="home-view button" *ngIf="!isLoggedIn">
                 <span>
                     <span>Join Us</span>
+                    <br />
+                </span>
+            </button>
+            <button class="home-view button" *ngIf="isLoggedIn" (click)="logout()">
+                <span>
+                    <span>Logout</span>
                     <br />
                 </span>
             </button>
