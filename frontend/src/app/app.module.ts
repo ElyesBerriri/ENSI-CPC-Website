@@ -14,6 +14,9 @@ import { FormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { ProblemsComponent } from './problems/problems.component';
 import { ProblemComponent } from './problem/problem.component';
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
+import { RessourcesComponent } from './ressources/ressources.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { ProblemComponent } from './problem/problem.component';
     NavbarComponent,
     LoginComponent,
     ProblemsComponent,
-    ProblemComponent
+    ProblemComponent,
+    ContactComponent,
+    AboutComponent,
+    RessourcesComponent
   ],
   imports: [
     BrowserModule,
