@@ -1,6 +1,8 @@
 # ENSI-CPC Website and Online Judge
 
 ![Logo_s7i7](https://user-images.githubusercontent.com/94719195/235677709-1811148e-a39c-4385-b4ea-d0e4298b7143.png)
+<img src="https://user-images.githubusercontent.com/94719195/235677709-1811148e-a39c-4385-b4ea-d0e4298b7143.png" alt="ENSI-CPC Logo" width="200" />
+
 
 
 Welcome to the ENSI-CPC website and online judge! Our platform is designed to help you improve your competitive programming skills and connect with other programmers from around the world.
