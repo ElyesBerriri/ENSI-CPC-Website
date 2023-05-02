@@ -690,7 +690,8 @@
 }
 
 .rattle-text {
-    color: green;
+    color: rgb(96, 220, 96);
+    font-weight:bold;
     animation: rattle 1s infinite;
 }
   

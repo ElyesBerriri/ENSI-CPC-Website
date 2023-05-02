@@ -18,10 +18,12 @@ export class ProblemComponent implements AfterViewInit {
   pb_id:number;
   pb:any;
   flag:boolean;
+  error: boolean;
   
   constructor(private http: HttpClient,private route:ActivatedRoute,private authService: AuthService) {
     this.pb_id = Number(this.route.snapshot.paramMap.get('id'));
     this.flag=false;
+    this.error=false;
   }
   ngOnInit(): void {
     let id=this.route.snapshot.paramMap.get('id');
@@ -38,7 +40,9 @@ export class ProblemComponent implements AfterViewInit {
   ngAfterViewInit() {
     const editor = ace.edit(this.editorRef.nativeElement);
     editor.setTheme('ace/theme/monokai');
-    editor.getSession().setMode('ace/mode/javascript');
+    editor.setFontSize(20);
+    editor.setValue("#include <iostream>\nusing namespace std;\nint main(){\n\t\n\treturn 0;\n}",1);
+    editor.getSession().setMode('ace/mode/c_cpp');
   }
   showValue(): void {
     const editor = ace.edit(this.editorRef.nativeElement);
@@ -60,11 +64,19 @@ export class ProblemComponent implements AfterViewInit {
     this.authService.pb(lang,formattedCode,this.pb_id).subscribe(
       data => {
         console.log(data);
-        this.flag=data;
+        if(data){
+          this.flag=data;
+          this.error=false;
+        }else{
+          this.error=true;
+          this.flag=false;
+        }
       },
       err => {
-        console.log(err)
-;      }
+        console.log(err);
+        this.error=true;
+        this.flag=false;
+      }
     );
   }
   

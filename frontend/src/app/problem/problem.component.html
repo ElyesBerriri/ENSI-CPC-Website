@@ -1,10 +1,15 @@
-<div class="p-4 rounded shadow-sm bg-light border" >
-    <a class="nav-link" routerLink="/problem/{{pb.id}}" routerLinkActive="active">#{{pb.id}}:{{pb.title}}</a>
-    <p ><span class="font-weight-bold mb-0">Description: </span><span class="font">{{pb.description}}</span></p> 
-    <p *ngIf="flag" style="color: green;">Successfully Submitted</p>
-
+<div class="p-4 rounded shadow-sm bg-light border mx-5 mt-5 mb-3">
+    <a class="nav-link" routerLink="/problem/{{pb.id}}" routerLinkActive="active"
+    style="color:blue;font-weight: bold;">{{pb.title}}</a>
+    <p class="mt-2" style="font-weight: 500;">{{pb.description}}</p> 
 </div>
-
-<div id="editor" #editor style="height: 500px;"></div>
-<button (click)="showValue()">Submit</button>
-
+<div class="text-center mb-3" *ngIf="flag">
+    <p style="color: rgb(17, 241, 17);font-weight: bold;">Accepted</p>
+</div>
+<div class="text-center mb-3" *ngIf="error">
+    <p style="color: rgb(250, 87, 87);font-weight: bold;">Wrong Answer</p>
+</div>
+<div id="editor" #editor class="mt-3" style="height: 440px;width: 60%;margin-left: 20%;border: 2px solid black;"></div>
+<div class="text-center mt-3">
+    <button class="btn btn-danger" (click)="showValue()">Submit Code</button>
+</div>

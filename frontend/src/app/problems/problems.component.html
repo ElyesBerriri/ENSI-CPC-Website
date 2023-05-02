@@ -1,11 +1,10 @@
 <div class="py-4 px-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
-        <h5 class="mb-0">Problems</h5>
-        <a href="#" class="btn btn-link text-muted">Show all</a>
+        <h5 class="mb-0" style="font-size: x-large;">Problems</h5>
     </div>
-    <div class="p-4 rounded shadow-sm bg-light border" *ngFor="let pb of array ">
-        <a class="nav-link" routerLink="/problem/{{pb.id}}" routerLinkActive="active">#{{pb.id}}:{{pb.title}}</a>
-        <p ><span class="font-weight-bold mb-0">Description: </span><span class="font">{{pb.description}}</span></p> 
+    <div class="p-4 rounded shadow-sm bg-light border mb-3" *ngFor="let pb of array ">
+        <a class="nav-link" routerLink="/problem/{{pb.id}}" routerLinkActive="active"
+        style="color:blue;font-weight: bold;">{{pb.title}}</a>
+        <p class="mt-2" style="font-weight: 500;">{{pb.description}}</p> 
     </div>
-    
 </div>
