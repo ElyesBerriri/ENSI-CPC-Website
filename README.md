@@ -41,5 +41,5 @@ If you have any questions or feedback about ENSI-CPC, please don't hesitate to g
 
 ## License
 
-ENSI-CPC is licensed under the [MIT] license. For more information, please see our LICENSE file.
+ENSI-CPC is licensed under the MIT license. For more information, please see our LICENSE file.
  
