@@ -1,8 +1,9 @@
 # ENSI-CPC Website and Online Judge
 
-<div style="text-align:center;">
+<p align="center">
   <img src="https://user-images.githubusercontent.com/94719195/235677709-1811148e-a39c-4385-b4ea-d0e4298b7143.png" alt="ENSI-CPC Logo" width="200" />
-</div>
+</p>
+
 
 
 
